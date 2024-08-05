@@ -5,6 +5,7 @@ import json
 region = 'us-east-1'
 ec2 = boto3.client('ec2', region_name=region)
 
+# Heal protected instances that have been stopped
 def lambda_handler(event, context):
     print("Received event: " + json.dumps(event))
     instances=[ event['detail']['instance-id'] ]
