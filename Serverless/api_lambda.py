@@ -1,8 +1,3 @@
-
-# This code is a bit ...messy and includes some workarounds
-# It functions fine, but needs some cleanup
-# Checked the DecimalEncoder and Checks workarounds 20200402 and no progression towards fix
-
 import boto3, json, os, decimal
 
 SM_ARN = 'YOUR_STATEMACHINE_ARN'
@@ -41,10 +36,7 @@ def lambda_handler(event, context):
         }
     return response
 
-# This is a workaround for: http://bugs.python.org/issue16535
-# Solution discussed on this thread https://stackoverflow.com/questions/11942364/typeerror-integer-is-not-json-serializable-when-serializing-json-in-python
-# https://stackoverflow.com/questions/1960516/python-json-serialize-a-decimal-object
-# Credit goes to the group :)
+
 class DecimalEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, decimal.Decimal):
