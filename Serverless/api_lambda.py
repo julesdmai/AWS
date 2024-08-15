@@ -5,7 +5,7 @@ SM_ARN = 'YOUR_STATEMACHINE_ARN'
 sm = boto3.client('stepfunctions')
 
 def lambda_handler(event, context):
-    # Print event data to logs .. 
+    # Print event data to logs
     print("Received event: " + json.dumps(event))
 
     # Load data coming from APIGateway
@@ -26,7 +26,7 @@ def lambda_handler(event, context):
             "headers": {"Access-Control-Allow-Origin":"*"},
             "body": json.dumps( { "Status": "Success", "Reason": "Input failed validation" }, cls=DecimalEncoder )
         }
-    # If none, start the state machine execution and inform client of 2XX success :)
+    # If none, start the state machine execution and inform client of 2XX success
     else: 
         sm.start_execution( stateMachineArn=SM_ARN, input=json.dumps(data, cls=DecimalEncoder) )
         response = {
