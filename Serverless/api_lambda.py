@@ -12,14 +12,14 @@ def lambda_handler(event, context):
     data = json.loads(event['body'])
     data['waitSeconds'] = int(data['waitSeconds'])
     
-    # Sanity check that all of the parameters we need have come through from API gateway
+    # Check that all of the parameters needed have come through from API gateway
     # Mixture of optional and mandatory ones
     checks = []
     checks.append('waitSeconds' in data)
     checks.append(type(data['waitSeconds']) == int)
     checks.append('message' in data)
 
-    # if any checks fail, return error to API Gateway to return to client
+    # If any checks fail, return error to API Gateway to return to client
     if False in checks:
         response = {
             "statusCode": 400,
