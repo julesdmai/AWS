@@ -1,5 +1,5 @@
 
-Description:  S3 Bucket using a custom Resource
+Description:  S3 Bucket using a Custom Resource
 Resources:
   animalpics:
     Type: AWS::S3::Bucket
