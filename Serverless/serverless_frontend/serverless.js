@@ -6,7 +6,7 @@ var errorDiv = document.getElementById('error-message')
 var successDiv = document.getElementById('success-message')
 var resultsDiv = document.getElementById('results-message')
 
-// function output returns input button contents
+// Function output returns input button contents
 function waitSecondsValue() { return document.getElementById('waitSeconds').value }
 function messageValue() { return document.getElementById('message').value }
 function emailValue() { return document.getElementById('email').value }
@@ -17,7 +17,7 @@ function clearNotifications() {
     successDiv.textContent = '';
 }
 
-// When buttons are clicked, this is run passing values to API Gateway call
+// When buttons are clicked, this is invoked passing values to API Gateway call
 document.getElementById('emailButton').addEventListener('click', function(e) { sendData(e, 'email'); });
 
 function sendData (e, pref) {
