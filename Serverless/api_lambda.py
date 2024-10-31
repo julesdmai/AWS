@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     data = json.loads(event['body'])
     data['waitSeconds'] = int(data['waitSeconds'])
     
-    # Check that all of the parameters needed have come through from API gateway
+    # Check for all required parameters needed have come through from API gateway
     # Mixture of optional and mandatory ones
     checks = []
     checks.append('waitSeconds' in data)
@@ -26,7 +26,7 @@ def lambda_handler(event, context):
             "headers": {"Access-Control-Allow-Origin":"*"},
             "body": json.dumps( { "Status": "Success", "Reason": "Input failed validation" }, cls=DecimalEncoder )
         }
-    # If none, start the state machine execution and inform client of 2XX success
+    # If all checks pass, start the state machine execution and inform client of 2XX success
     else: 
         sm.start_execution( stateMachineArn=SM_ARN, input=json.dumps(data, cls=DecimalEncoder) )
         response = {
