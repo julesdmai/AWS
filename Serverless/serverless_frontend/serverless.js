@@ -1,6 +1,6 @@
 
 var API_ENDPOINT = 'https://09mrjo884j.execute-api.us-east-1.amazonaws.com/prod/petcuddleotron';
-// Replace with API GW endpoint (ex. https://09mrjo884j.execute-api.us-east-1.amazonaws.com/prod)
+// Replace with own API GW endpoint (ex. https://09mrjo884j.execute-api.us-east-1.amazonaws.com/prod)
 
 var errorDiv = document.getElementById('error-message')
 var successDiv = document.getElementById('success-message')
@@ -17,9 +17,10 @@ function clearNotifications() {
     successDiv.textContent = '';
 }
 
-// When buttons are clicked, this is invoked passing values to API Gateway call
+// When "emailButton" is "click"ed, this sendData fx invoked - passing values to API Gateway call
 document.getElementById('emailButton').addEventListener('click', function(e) { sendData(e, 'email'); });
 
+// Function definition for sendData
 function sendData (e, pref) {
     e.preventDefault()
     clearNotifications()
